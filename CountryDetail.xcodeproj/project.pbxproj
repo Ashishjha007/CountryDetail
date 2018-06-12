@@ -8,20 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		75D2E84520D0092A00C99128 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E84420D0092A00C99128 /* AppDelegate.swift */; };
-		75D2E84720D0092A00C99128 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E84620D0092A00C99128 /* ViewController.swift */; };
+		75D2E84720D0092A00C99128 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E84620D0092A00C99128 /* HomeScreenViewController.swift */; };
 		75D2E84A20D0092A00C99128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84820D0092A00C99128 /* Main.storyboard */; };
 		75D2E84C20D0093000C99128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84B20D0093000C99128 /* Assets.xcassets */; };
 		75D2E84F20D0093000C99128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84D20D0093000C99128 /* LaunchScreen.storyboard */; };
+		75D2E85820D0194300C99128 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E85720D0194300C99128 /* UIViewExtension.swift */; };
+		75D2E85F20D01B8700C99128 /* CountryDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E85D20D01B8700C99128 /* CountryDetailCell.swift */; };
+		75D2E86020D01B8700C99128 /* CountryDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E85E20D01B8700C99128 /* CountryDetailCell.xib */; };
+		75D2E86320D027A800C99128 /* CountryDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86220D027A800C99128 /* CountryDetailModel.swift */; };
+		75D2E86520D027B900C99128 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */; };
+		75D2E86720D02A8F00C99128 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		75D2E84120D0092A00C99128 /* CountryDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D2E84420D0092A00C99128 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		75D2E84620D0092A00C99128 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		75D2E84620D0092A00C99128 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		75D2E84920D0092A00C99128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75D2E84B20D0093000C99128 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75D2E84E20D0093000C99128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75D2E85020D0093100C99128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75D2E85720D0194300C99128 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		75D2E85D20D01B8700C99128 /* CountryDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailCell.swift; sourceTree = "<group>"; };
+		75D2E85E20D01B8700C99128 /* CountryDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailCell.xib; sourceTree = "<group>"; };
+		75D2E86220D027A800C99128 /* CountryDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailModel.swift; sourceTree = "<group>"; };
+		75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
+		75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +66,68 @@
 		75D2E84320D0092A00C99128 /* CountryDetail */ = {
 			isa = PBXGroup;
 			children = (
+				75D2E86120D0244800C99128 /* Controller */,
+				75D2E85C20D01B4F00C99128 /* TableCell */,
+				75D2E85B20D01B3D00C99128 /* Utility */,
+				75D2E85A20D01B3700C99128 /* ViewModel */,
+				75D2E85920D01B3000C99128 /* Model */,
+				75D2E85620D018B100C99128 /* Extension */,
 				75D2E84420D0092A00C99128 /* AppDelegate.swift */,
-				75D2E84620D0092A00C99128 /* ViewController.swift */,
 				75D2E84820D0092A00C99128 /* Main.storyboard */,
 				75D2E84B20D0093000C99128 /* Assets.xcassets */,
 				75D2E84D20D0093000C99128 /* LaunchScreen.storyboard */,
 				75D2E85020D0093100C99128 /* Info.plist */,
 			);
 			path = CountryDetail;
+			sourceTree = "<group>";
+		};
+		75D2E85620D018B100C99128 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				75D2E85720D0194300C99128 /* UIViewExtension.swift */,
+				75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		75D2E85920D01B3000C99128 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75D2E86220D027A800C99128 /* CountryDetailModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		75D2E85A20D01B3700C99128 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		75D2E85B20D01B3D00C99128 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		75D2E85C20D01B4F00C99128 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				75D2E85D20D01B8700C99128 /* CountryDetailCell.swift */,
+				75D2E85E20D01B8700C99128 /* CountryDetailCell.xib */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		75D2E86120D0244800C99128 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				75D2E84620D0092A00C99128 /* HomeScreenViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75D2E84F20D0093000C99128 /* LaunchScreen.storyboard in Resources */,
+				75D2E86020D01B8700C99128 /* CountryDetailCell.xib in Resources */,
 				75D2E84C20D0093000C99128 /* Assets.xcassets in Resources */,
 				75D2E84A20D0092A00C99128 /* Main.storyboard in Resources */,
 			);
@@ -135,7 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75D2E84720D0092A00C99128 /* ViewController.swift in Sources */,
+				75D2E86320D027A800C99128 /* CountryDetailModel.swift in Sources */,
+				75D2E86720D02A8F00C99128 /* UIImageViewExtension.swift in Sources */,
+				75D2E85820D0194300C99128 /* UIViewExtension.swift in Sources */,
+				75D2E86520D027B900C99128 /* CountryDetailViewModel.swift in Sources */,
+				75D2E85F20D01B8700C99128 /* CountryDetailCell.swift in Sources */,
+				75D2E84720D0092A00C99128 /* HomeScreenViewController.swift in Sources */,
 				75D2E84520D0092A00C99128 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,6 +355,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XT933NJ63Z;
 				INFOPLIST_FILE = CountryDetail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,6 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XT933NJ63Z;
 				INFOPLIST_FILE = CountryDetail/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
