@@ -12,12 +12,14 @@
 		75D2E84A20D0092A00C99128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84820D0092A00C99128 /* Main.storyboard */; };
 		75D2E84C20D0093000C99128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84B20D0093000C99128 /* Assets.xcassets */; };
 		75D2E84F20D0093000C99128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84D20D0093000C99128 /* LaunchScreen.storyboard */; };
-		75D2E85820D0194300C99128 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E85720D0194300C99128 /* UIViewExtension.swift */; };
+		75D2E85820D0194300C99128 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E85720D0194300C99128 /* UIView+Extension.swift */; };
 		75D2E85F20D01B8700C99128 /* CountryDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E85D20D01B8700C99128 /* CountryDetailCell.swift */; };
 		75D2E86020D01B8700C99128 /* CountryDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E85E20D01B8700C99128 /* CountryDetailCell.xib */; };
 		75D2E86320D027A800C99128 /* CountryDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86220D027A800C99128 /* CountryDetailModel.swift */; };
 		75D2E86520D027B900C99128 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */; };
-		75D2E86720D02A8F00C99128 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */; };
+		75D2E86720D02A8F00C99128 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86620D02A8F00C99128 /* UIImageView+Extension.swift */; };
+		75D2E86920D16E4500C99128 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86820D16E4500C99128 /* UIColor+Extension.swift */; };
+		75D2E86B20D16E9700C99128 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E86A20D16E9700C99128 /* UINavigationBar+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +30,14 @@
 		75D2E84B20D0093000C99128 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		75D2E84E20D0093000C99128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		75D2E85020D0093100C99128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75D2E85720D0194300C99128 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		75D2E85720D0194300C99128 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		75D2E85D20D01B8700C99128 /* CountryDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailCell.swift; sourceTree = "<group>"; };
 		75D2E85E20D01B8700C99128 /* CountryDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailCell.xib; sourceTree = "<group>"; };
 		75D2E86220D027A800C99128 /* CountryDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailModel.swift; sourceTree = "<group>"; };
 		75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
-		75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		75D2E86620D02A8F00C99128 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		75D2E86820D16E4500C99128 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		75D2E86A20D16E9700C99128 /* UINavigationBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +88,10 @@
 		75D2E85620D018B100C99128 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				75D2E85720D0194300C99128 /* UIViewExtension.swift */,
-				75D2E86620D02A8F00C99128 /* UIImageViewExtension.swift */,
+				75D2E85720D0194300C99128 /* UIView+Extension.swift */,
+				75D2E86620D02A8F00C99128 /* UIImageView+Extension.swift */,
+				75D2E86820D16E4500C99128 /* UIColor+Extension.swift */,
+				75D2E86A20D16E9700C99128 /* UINavigationBar+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -203,12 +209,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				75D2E86320D027A800C99128 /* CountryDetailModel.swift in Sources */,
-				75D2E86720D02A8F00C99128 /* UIImageViewExtension.swift in Sources */,
-				75D2E85820D0194300C99128 /* UIViewExtension.swift in Sources */,
+				75D2E86720D02A8F00C99128 /* UIImageView+Extension.swift in Sources */,
+				75D2E85820D0194300C99128 /* UIView+Extension.swift in Sources */,
 				75D2E86520D027B900C99128 /* CountryDetailViewModel.swift in Sources */,
 				75D2E85F20D01B8700C99128 /* CountryDetailCell.swift in Sources */,
 				75D2E84720D0092A00C99128 /* HomeScreenViewController.swift in Sources */,
 				75D2E84520D0092A00C99128 /* AppDelegate.swift in Sources */,
+				75D2E86B20D16E9700C99128 /* UINavigationBar+Extension.swift in Sources */,
+				75D2E86920D16E4500C99128 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

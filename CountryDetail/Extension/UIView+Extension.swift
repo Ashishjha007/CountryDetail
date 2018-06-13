@@ -1,5 +1,5 @@
 //
-//  UIViewExtension.swift
+//  UIView+Extension.swift
 //  CountryDetail
 //
 //  Created by Ashish jha on 6/12/18.
@@ -21,4 +21,5 @@ extension UIView {
         let gradient = self.layer.sublayers![0] as! CAGradientLayer
         gradient.frame = self.bounds
     }
+    
 }

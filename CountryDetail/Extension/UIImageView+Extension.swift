@@ -1,5 +1,5 @@
 //
-//  UIImageViewExtension.swift
+//  UIImageView+Extension.swift
 //  CountryDetail
 //
 //  Created by Ashish jha on 6/12/18.

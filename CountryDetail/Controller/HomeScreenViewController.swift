@@ -11,10 +11,27 @@ import UIKit
 class HomeScreenViewController: UIViewController {
 
     @IBOutlet var countryDetailTableView: UITableView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(HomeScreenViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.setupUI()
+       // self.loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.countryDetailTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,10 +47,29 @@ class HomeScreenViewController: UIViewController {
     }
 
     func setupUI() {
+        self.title = "Canada"
+        self.navigationController?.navigationBar.setupNavigationBar()
         self.view.addGradientBackground(from: UIColor.init(red: 213/255.0, green: 126/255.0, blue: 208/255.0, alpha: 1.0), to: UIColor.init(red: 120/255.0, green: 81/255.0, blue: 206/255.0, alpha: 1.0))
-        self.countryDetailTableView.estimatedRowHeight = 95
+        self.countryDetailTableView.addSubview(self.refreshControl)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            self.countryDetailTableView.estimatedRowHeight = 180
+        } else {
+            self.countryDetailTableView.estimatedRowHeight = 116
+        }
         self.countryDetailTableView.rowHeight  = UITableViewAutomaticDimension
         self.countryDetailTableView?.register(CountryDetailCell.nib, forCellReuseIdentifier: CountryDetailCell.identifier)
+    }
+    
+    func loadData() {
+        CountryDetailViewModel.fetchDetail("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (root, code) in
+            print(root)
+        }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        
+        self.countryDetailTableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 
@@ -53,7 +89,8 @@ extension HomeScreenViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: CountryDetailCell.identifier, for: indexPath) as? CountryDetailCell {
             //let placeDetail = self.placeArray[indexPath.section]
             //cell.item = placeDetail
-            cell.layer.cornerRadius = 10
+            cell.descriptionLabel.text = "Adfdfsd moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg. They swim at 10 km/h. Moose antlers weigh roughly 20 kg. The plural of moose is actually 'meese', despite what most dictionaries, encyclopedias, and experts will tell you."
+            cell.layer.cornerRadius = 5
             cell.imageVw.circularImageView()
             return cell
         }
@@ -69,6 +106,10 @@ extension HomeScreenViewController: UITableViewDelegate {
         } else {
             cell.backgroundColor = UIColor.white
         }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
