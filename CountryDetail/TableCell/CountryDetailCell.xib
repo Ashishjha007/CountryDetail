@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeHolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="yRm-tu-E2e">
-                        <rect key="frame" x="15" y="63.333333333333343" width="70" height="70"/>
+                        <rect key="frame" x="15" y="63" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="Vq0-qx-RjA">
                                 <variation key="heightClass=regular-widthClass=regular" constant="100"/>
@@ -31,40 +31,39 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transportation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ye6-C1-QQG">
-                        <rect key="frame" x="20" y="26" width="318" height="22.333333333333329"/>
+                        <rect key="frame" x="20" y="21" width="318" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="Y8x-VM-Fzg"/>
+                            <constraint firstAttribute="height" constant="30" id="Y8x-VM-Fzg"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="heightClass=regular-widthClass=regular">
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdE-ge-ZyP">
-                        <rect key="frame" x="100" y="63.333333333333329" width="223" height="149.33333333333337"/>
-                        <string key="text">A moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg. They swim at 10 km/h. Moose antlers weigh roughly 20 kg. The plural of moose is actually 'meese', despite what most dictionaries, encyclopedias, and experts will tell you.</string>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdE-ge-ZyP">
+                        <rect key="frame" x="100" y="62.999999999999986" width="223" height="149.66666666666663"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                         <variation key="heightClass=regular-widthClass=regular">
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="22"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                         </variation>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Ye6-C1-QQG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="4s3-M0-Zki"/>
-                    <constraint firstItem="Ye6-C1-QQG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="DP8-7z-7hW"/>
-                    <constraint firstItem="yRm-tu-E2e" firstAttribute="top" secondItem="Ye6-C1-QQG" secondAttribute="bottom" constant="15" id="DQJ-y7-jb5"/>
+                    <constraint firstItem="Ye6-C1-QQG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="DP8-7z-7hW"/>
+                    <constraint firstItem="yRm-tu-E2e" firstAttribute="top" secondItem="Ye6-C1-QQG" secondAttribute="bottom" constant="12" id="DQJ-y7-jb5"/>
                     <constraint firstItem="yRm-tu-E2e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="EmY-gE-aKh"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yRm-tu-E2e" secondAttribute="bottom" constant="15" id="Q3m-jS-nkT"/>
                     <constraint firstItem="Ye6-C1-QQG" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="To8-Ip-vkk"/>
                     <constraint firstItem="qdE-ge-ZyP" firstAttribute="leading" secondItem="yRm-tu-E2e" secondAttribute="trailing" constant="15" id="cpB-QA-x7g"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qdE-ge-ZyP" secondAttribute="trailing" constant="15" id="puh-hu-NRD"/>
                     <constraint firstAttribute="bottom" secondItem="qdE-ge-ZyP" secondAttribute="bottom" constant="15" id="swB-bs-tj3"/>
-                    <constraint firstItem="qdE-ge-ZyP" firstAttribute="top" secondItem="Ye6-C1-QQG" secondAttribute="bottom" constant="15" id="y3Y-MM-AdM"/>
+                    <constraint firstItem="qdE-ge-ZyP" firstAttribute="top" secondItem="Ye6-C1-QQG" secondAttribute="bottom" constant="11.999999999999986" id="y3Y-MM-AdM"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

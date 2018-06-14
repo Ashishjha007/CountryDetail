@@ -68,7 +68,7 @@ extension Color {
         case .border:
             instanceColor = UIColor.clear
         case .navigationBarBackground:
-            instanceColor = UIColor.brown//(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+            instanceColor = UIColor(red:213/255.0 , green: 126/255.0, blue: 208/255.0, alpha: 1.0)
         case .navigationBarText:
             instanceColor = UIColor.white
         case .tableViewBackground:

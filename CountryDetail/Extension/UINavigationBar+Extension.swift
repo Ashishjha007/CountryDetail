@@ -12,10 +12,10 @@ extension UINavigationBar
 {
     func setupNavigationBar() {
         
-        //barTintColor = Color.navigationBarBackground.value
+        barTintColor = Color.navigationBarBackground.value
         let titleDict: NSDictionary = [
             NSAttributedStringKey.foregroundColor: Color.navigationBarText.value,
-            NSAttributedStringKey.font: UIFont(name: "Georgia-Bold", size: 18)! ]
+            NSAttributedStringKey.font: UIFont(name: "Helvetica-Bold", size: 18)! ]
         titleTextAttributes = titleDict as? [NSAttributedStringKey : Any]
     }
 }

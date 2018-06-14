@@ -11,6 +11,7 @@ import UIKit
 class HomeScreenViewController: UIViewController {
 
     @IBOutlet var countryDetailTableView: UITableView!
+    var countryDetailModel : CountryDetailModel?
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -26,7 +27,7 @@ class HomeScreenViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.setupUI()
-       // self.loadData()
+        self.loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +48,6 @@ class HomeScreenViewController: UIViewController {
     }
 
     func setupUI() {
-        self.title = "Canada"
         self.navigationController?.navigationBar.setupNavigationBar()
         self.view.addGradientBackground(from: UIColor.init(red: 213/255.0, green: 126/255.0, blue: 208/255.0, alpha: 1.0), to: UIColor.init(red: 120/255.0, green: 81/255.0, blue: 206/255.0, alpha: 1.0))
         self.countryDetailTableView.addSubview(self.refreshControl)
@@ -56,20 +56,42 @@ class HomeScreenViewController: UIViewController {
         } else {
             self.countryDetailTableView.estimatedRowHeight = 116
         }
+        self.countryDetailTableView.isHidden = true
         self.countryDetailTableView.rowHeight  = UITableViewAutomaticDimension
         self.countryDetailTableView?.register(CountryDetailCell.nib, forCellReuseIdentifier: CountryDetailCell.identifier)
     }
     
     func loadData() {
-        CountryDetailViewModel.fetchDetail("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (root, code) in
-            print(root)
+        
+        let queue = DispatchQueue(label: "bgQueue", qos: DispatchQoS.background)
+        queue.async {
+            CountryDetailViewModel.fetchDetail("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (countryDetail) in
+                DispatchQueue.main.async {
+                    self.countryDetailModel = countryDetail
+                    self.title = countryDetail?.title
+                    
+                    // Animate table view
+                    let transition = CATransition()
+                    transition.type = kCATransitionPush
+                    transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                    transition.fillMode = kCAFillModeForwards
+                    transition.duration = 2
+                    transition.subtype = kCATransitionFromTop
+                    self.countryDetailTableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
+                    
+                    // Update your data source here
+                    self.countryDetailTableView.isHidden = false
+                    self.countryDetailTableView.reloadData()
+                    
+                }
+            }
         }
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         
-        self.countryDetailTableView.reloadData()
         refreshControl.endRefreshing()
+        self.loadData()
     }
 }
 
@@ -87,11 +109,10 @@ extension HomeScreenViewController: UITableViewDataSource {
         let cell : UITableViewCell = UITableViewCell()
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: CountryDetailCell.identifier, for: indexPath) as? CountryDetailCell {
-            //let placeDetail = self.placeArray[indexPath.section]
-            //cell.item = placeDetail
-            cell.descriptionLabel.text = "Adfdfsd moose is a common sight in Canada. Tall and majestic, they represent many of the values which Canadians imagine that they possess. They grow up to 2.7 metres long and can weigh over 700 kg. They swim at 10 km/h. Moose antlers weigh roughly 20 kg. The plural of moose is actually 'meese', despite what most dictionaries, encyclopedias, and experts will tell you."
             cell.layer.cornerRadius = 5
             cell.imageVw.circularImageView()
+            let detailItem = self.countryDetailModel?.rows[indexPath.section]
+            cell.detailModel = detailItem
             return cell
         }
         return cell
@@ -101,11 +122,7 @@ extension HomeScreenViewController: UITableViewDataSource {
 extension HomeScreenViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if(indexPath.section % 2 == 0) {
-            cell.backgroundColor = UIColor(red: 237/255.0, green: 237/255.0, blue: 237/255.0, alpha: 1.0)
-        } else {
-            cell.backgroundColor = UIColor.white
-        }
+        cell.backgroundColor = UIColor.white
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
