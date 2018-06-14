@@ -10,7 +10,7 @@ import UIKit
 
 class CountryDetailCell: UITableViewCell {
 
-    @IBOutlet var imageVw: UIImageView!
+    @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     var detailModel: CountryDetailModel.Row? {

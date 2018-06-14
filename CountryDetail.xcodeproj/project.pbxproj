@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7580F7A920D2C44B0083D3C1 /* ImageDownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7580F7A820D2C44B0083D3C1 /* ImageDownloadViewModel.swift */; };
 		75D2E84520D0092A00C99128 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E84420D0092A00C99128 /* AppDelegate.swift */; };
 		75D2E84720D0092A00C99128 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D2E84620D0092A00C99128 /* HomeScreenViewController.swift */; };
 		75D2E84A20D0092A00C99128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75D2E84820D0092A00C99128 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7580F7A820D2C44B0083D3C1 /* ImageDownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadViewModel.swift; sourceTree = "<group>"; };
 		75D2E84120D0092A00C99128 /* CountryDetail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryDetail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75D2E84420D0092A00C99128 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75D2E84620D0092A00C99128 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				75D2E86420D027B900C99128 /* CountryDetailViewModel.swift */,
+				7580F7A820D2C44B0083D3C1 /* ImageDownloadViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			files = (
 				75D2E86320D027A800C99128 /* CountryDetailModel.swift in Sources */,
 				75D2E86720D02A8F00C99128 /* UIImageView+Extension.swift in Sources */,
+				7580F7A920D2C44B0083D3C1 /* ImageDownloadViewModel.swift in Sources */,
 				75D2E85820D0194300C99128 /* UIView+Extension.swift in Sources */,
 				75D2E86520D027B900C99128 /* CountryDetailViewModel.swift in Sources */,
 				75D2E85F20D01B8700C99128 /* CountryDetailCell.swift in Sources */,

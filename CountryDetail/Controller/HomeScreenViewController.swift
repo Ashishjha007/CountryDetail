@@ -12,6 +12,7 @@ class HomeScreenViewController: UIViewController {
 
     @IBOutlet var countryDetailTableView: UITableView!
     var countryDetailModel : CountryDetailModel?
+    var imageCache: NSCache<NSString, UIImage> = NSCache<NSString, UIImage>()
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -62,43 +63,44 @@ class HomeScreenViewController: UIViewController {
     }
     
     func loadData() {
-        
         let queue = DispatchQueue(label: "bgQueue", qos: DispatchQoS.background)
         queue.async {
             CountryDetailViewModel.fetchDetail("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (countryDetail) in
                 DispatchQueue.main.async {
                     self.countryDetailModel = countryDetail
                     self.title = countryDetail?.title
-                    
+                    self.countryDetailTableView.isHidden = false
                     // Animate table view
                     let transition = CATransition()
                     transition.type = kCATransitionPush
                     transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                     transition.fillMode = kCAFillModeForwards
-                    transition.duration = 2
+                    transition.duration = 1
                     transition.subtype = kCATransitionFromTop
                     self.countryDetailTableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
                     
                     // Update your data source here
-                    self.countryDetailTableView.isHidden = false
-                    self.countryDetailTableView.reloadData()
                     
+                    self.countryDetailTableView.reloadData()
                 }
             }
         }
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        
         refreshControl.endRefreshing()
         self.loadData()
     }
+    
 }
 
-extension HomeScreenViewController: UITableViewDataSource {
+extension HomeScreenViewController: UITableViewDataSource, ImageDownloadProtocol {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 10
+        if let tableRowCount = self.countryDetailModel?.rows.count {
+            return tableRowCount
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,9 +112,28 @@ extension HomeScreenViewController: UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: CountryDetailCell.identifier, for: indexPath) as? CountryDetailCell {
             cell.layer.cornerRadius = 5
-            cell.imageVw.circularImageView()
+            cell.thumbnailImageView.circularImageView()
             let detailItem = self.countryDetailModel?.rows[indexPath.section]
             cell.detailModel = detailItem
+            
+            
+            
+            if detailItem?.imageHref != nil {
+                let imageUrl = (detailItem?.imageHref)!
+                if let cachedImage = imageCache.object(forKey: imageUrl.absoluteString as NSString) {
+                    cell.thumbnailImageView.image = cachedImage
+                } else {
+                    cell.thumbnailImageView.image = UIImage(named: "placeHolderIcon")
+                    downloadImage(from: imageUrl) { (image) in
+                        if let thumbnailImage = image {
+                            self.imageCache.setObject(thumbnailImage, forKey: imageUrl.absoluteString as NSString)
+                            cell.thumbnailImageView.image = thumbnailImage
+                        }
+                    }
+                }
+            } else {
+                 cell.thumbnailImageView.image = UIImage(named: "placeHolderIcon")
+            }
             return cell
         }
         return cell
@@ -137,5 +158,19 @@ extension HomeScreenViewController: UITableViewDelegate {
         return 20
     }
 }
+
+//extension HomeScreenViewController: ImageDownloadProtocol {
+//
+//    func updateImage(_ url : URL) -> UIImage {
+//        downloadImage(from: url) { image in
+//            if Thread.isMainThread {
+//                print("Thread is main")
+//
+//            }
+//           // self.imageViewOne.image = image
+//            print("Done")
+//        }
+//    }
+//}
 
 

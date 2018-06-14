@@ -69,10 +69,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="descriptionLabel" destination="qdE-ge-ZyP" id="njB-0b-dop"/>
-                <outlet property="imageVw" destination="yRm-tu-E2e" id="9Wu-tv-eeE"/>
+                <outlet property="thumbnailImageView" destination="yRm-tu-E2e" id="rbe-6h-HEw"/>
                 <outlet property="titleLabel" destination="Ye6-C1-QQG" id="Bwr-IE-jaB"/>
             </connections>
-            <point key="canvasLocation" x="36" y="116"/>
+            <point key="canvasLocation" x="-81" y="107"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -33,8 +33,9 @@ struct CountryDetailViewModel {
             
         do {
             let detail = try JSONDecoder().decode(CountryDetailModel.self, from: jsonData)
-            print(detail)
-            completion(detail)
+             DispatchQueue.main.async {
+                completion(detail)
+            }
         }
         catch DecodingError.dataCorrupted(let context) {
             print(context.debugDescription)
