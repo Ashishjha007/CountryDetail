@@ -9,7 +9,7 @@
 import UIKit
 
 struct CountryDetailViewModel {
-    static func fetchDetail(_ urlString : String , completion:@escaping (_ rootObject : CountryDetailModel?) -> Void)  {
+    static func fetchDetail(_ urlString : String , completion:@escaping (_ rootObject : CountryDetailModel?, _ errorMessage : String?) -> Void)  {
         
         let url = URL(string: urlString)!
         // json data can be downloaded with URLSession but given url is not
@@ -29,28 +29,36 @@ struct CountryDetailViewModel {
 //            }
 
         let string = try? String(contentsOf: url, encoding: .isoLatin1)
-        let jsonData: Data = (string?.data(using: .utf8))!
-            
-        do {
-            let detail = try JSONDecoder().decode(CountryDetailModel.self, from: jsonData)
-             DispatchQueue.main.async {
-                completion(detail)
+        if let content = string {
+            let jsonData: Data = (content.data(using: .utf8))!
+            do {
+                let detail = try JSONDecoder().decode(CountryDetailModel.self, from: jsonData)
+                 DispatchQueue.main.async {
+                    completion(detail, nil)
+                 }
             }
-        }
-        catch DecodingError.dataCorrupted(let context) {
-            print(context.debugDescription)
-        }
-        catch DecodingError.keyNotFound(let key, let context) {
-            print("\(key.stringValue) was not found, \(context.debugDescription)")
-        }
-        catch DecodingError.typeMismatch(let type, let context) {
-            print("\(type) was expected, \(context.debugDescription)")
-        }
-        catch DecodingError.valueNotFound(let type, let context) {
-            print("no value was found for \(type), \(context.debugDescription)")
-        }
-        catch {
-            print("Error: \(error.localizedDescription)")
+            catch DecodingError.dataCorrupted(let context) {
+                let msg = context.debugDescription
+                completion(nil, msg)
+            }
+            catch DecodingError.keyNotFound(_, let context) {
+                let msg = context.debugDescription
+                completion(nil, msg)
+            }
+            catch DecodingError.typeMismatch(_, let context) {
+                let msg = context.debugDescription
+                completion(nil, msg)
+            }
+            catch DecodingError.valueNotFound(_, let context) {
+                let msg = context.debugDescription
+                completion(nil, msg)
+            }
+            catch {
+                let msg = error.localizedDescription
+                completion(nil, msg)
+            }
+        } else {
+            completion(nil, "Please check internet connection.")
         }
     }
 }

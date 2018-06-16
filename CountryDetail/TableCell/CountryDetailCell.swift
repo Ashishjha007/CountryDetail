@@ -16,14 +16,18 @@ class CountryDetailCell: UITableViewCell {
     var detailModel: CountryDetailModel.Row? {
         didSet {
             guard let item = detailModel else { return }
-            titleLabel?.text = item.title
-            descriptionLabel?.text = item.description
+            self.titleLabel?.text = item.title
+            self.descriptionLabel?.text = item.description
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.titleLabel.textColor = Color.titleLabelText.value
+        self.descriptionLabel.textColor = Color.descriptionLabelText.value
+        self.thumbnailImageView.circularImageView()
+        self.layer.cornerRadius = 5
     }
     
     static var nib:UINib {

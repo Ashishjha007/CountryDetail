@@ -11,7 +11,7 @@ import UIKit
 class HomeScreenViewController: UIViewController {
 
     @IBOutlet var countryDetailTableView: UITableView!
-    var countryDetailModel : CountryDetailModel?
+    var countryDetailModel : CountryDetailModel!
     var imageCache: NSCache<NSString, UIImage> = NSCache<NSString, UIImage>()
     
     lazy var refreshControl: UIRefreshControl = {
@@ -53,9 +53,9 @@ class HomeScreenViewController: UIViewController {
         self.view.addGradientBackground(from: UIColor.init(red: 213/255.0, green: 126/255.0, blue: 208/255.0, alpha: 1.0), to: UIColor.init(red: 120/255.0, green: 81/255.0, blue: 206/255.0, alpha: 1.0))
         self.countryDetailTableView.addSubview(self.refreshControl)
         if UIDevice.current.userInterfaceIdiom == .pad {
-            self.countryDetailTableView.estimatedRowHeight = 180
+            self.countryDetailTableView.estimatedRowHeight = CGFloat(Constants.ipadCellHeight)
         } else {
-            self.countryDetailTableView.estimatedRowHeight = 116
+            self.countryDetailTableView.estimatedRowHeight = CGFloat(Constants.iphoneCellHeight)
         }
         self.countryDetailTableView.isHidden = true
         self.countryDetailTableView.rowHeight  = UITableViewAutomaticDimension
@@ -63,10 +63,14 @@ class HomeScreenViewController: UIViewController {
     }
     
     func loadData() {
-        let queue = DispatchQueue(label: "bgQueue", qos: DispatchQoS.background)
+        let queue = DispatchQueue(label: "bgQueue", qos: DispatchQoS.default )
         queue.async {
-            CountryDetailViewModel.fetchDetail("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json") { (countryDetail) in
+            CountryDetailViewModel.fetchDetail(Constants.baseUrl) { (countryDetail, errorMsg) in
                 DispatchQueue.main.async {
+                    if let msg = errorMsg {
+                        self.showAlert(msg)
+                        return
+                    }
                     self.countryDetailModel = countryDetail
                     self.title = countryDetail?.title
                     self.countryDetailTableView.isHidden = false
@@ -78,9 +82,6 @@ class HomeScreenViewController: UIViewController {
                     transition.duration = 1
                     transition.subtype = kCATransitionFromTop
                     self.countryDetailTableView.layer.add(transition, forKey: "UITableViewReloadDataAnimationKey")
-                    
-                    // Update your data source here
-                    
                     self.countryDetailTableView.reloadData()
                 }
             }
@@ -92,6 +93,13 @@ class HomeScreenViewController: UIViewController {
         self.loadData()
     }
     
+    func showAlert(_ msg: String) {
+        let alertViewController = UIAlertController(title: "Alert", message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) -> Void in
+        }
+        alertViewController.addAction(okAction)
+        self.present(alertViewController, animated: true, completion: nil)
+    }
 }
 
 extension HomeScreenViewController: UITableViewDataSource, ImageDownloadProtocol {
@@ -111,23 +119,27 @@ extension HomeScreenViewController: UITableViewDataSource, ImageDownloadProtocol
         let cell : UITableViewCell = UITableViewCell()
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: CountryDetailCell.identifier, for: indexPath) as? CountryDetailCell {
-            cell.layer.cornerRadius = 5
-            cell.thumbnailImageView.circularImageView()
             let detailItem = self.countryDetailModel?.rows[indexPath.section]
             cell.detailModel = detailItem
-            
-            
+            cell.tag = indexPath.row
             
             if detailItem?.imageHref != nil {
                 let imageUrl = (detailItem?.imageHref)!
                 if let cachedImage = imageCache.object(forKey: imageUrl.absoluteString as NSString) {
-                    cell.thumbnailImageView.image = cachedImage
+                    if (cell.tag == indexPath.row) {
+                        cell.thumbnailImageView.image = cachedImage
+                    }
                 } else {
                     cell.thumbnailImageView.image = UIImage(named: "placeHolderIcon")
                     downloadImage(from: imageUrl) { (image) in
                         if let thumbnailImage = image {
-                            self.imageCache.setObject(thumbnailImage, forKey: imageUrl.absoluteString as NSString)
-                            cell.thumbnailImageView.image = thumbnailImage
+                            DispatchQueue.main.async {
+                                if let updateCell : CountryDetailCell = tableView.cellForRow(at: indexPath) as? CountryDetailCell {
+                                    self.imageCache.setObject(thumbnailImage, forKey: imageUrl.absoluteString as NSString)
+                                    updateCell.thumbnailImageView.image = thumbnailImage
+                                    updateCell.setNeedsLayout()
+                                }
+                            }
                         }
                     }
                 }
@@ -158,19 +170,5 @@ extension HomeScreenViewController: UITableViewDelegate {
         return 20
     }
 }
-
-//extension HomeScreenViewController: ImageDownloadProtocol {
-//
-//    func updateImage(_ url : URL) -> UIImage {
-//        downloadImage(from: url) { image in
-//            if Thread.isMainThread {
-//                print("Thread is main")
-//
-//            }
-//           // self.imageViewOne.image = image
-//            print("Done")
-//        }
-//    }
-//}
 
 

@@ -41,18 +41,14 @@ extension UIColor {
 }
 
 enum Color {
-    
     case navigationBarBackground
     case navigationBarText
     case border
-    case theme
     case tableViewBackground
     case tableCellBackground
     case titleLabelText
     case descriptionLabelText
-    // 1
     case custom(hexString: String, alpha: Double)
-    // 2
     func withAlpha(_ alpha: Double) -> UIColor {
         return self.value.withAlphaComponent(CGFloat(alpha))
     }
@@ -61,28 +57,25 @@ enum Color {
 extension Color {
     
     var value: UIColor {
-        var instanceColor = UIColor.clear
+        var color = UIColor.clear
         switch self {
-        case .theme:
-            instanceColor = UIColor.cyan//(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
         case .border:
-            instanceColor = UIColor.clear
+            color = UIColor.clear
         case .navigationBarBackground:
-            instanceColor = UIColor(red:213/255.0 , green: 126/255.0, blue: 208/255.0, alpha: 1.0)
+            color = UIColor(red:213/255.0 , green: 126/255.0, blue: 208/255.0, alpha: 1.0)
         case .navigationBarText:
-            instanceColor = UIColor.white
+            color = UIColor.white
         case .tableViewBackground:
-            instanceColor = UIColor.clear
+            color = UIColor.clear
         case .tableCellBackground:
-            instanceColor = UIColor.clear
+            color = UIColor.clear
         case .titleLabelText:
-            instanceColor = UIColor.blue//(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+            color = UIColor(red: 0/255.0, green: 84/255.0, blue: 147/255.0, alpha: 1.0)
         case .descriptionLabelText:
-            instanceColor = UIColor.red//red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+            color = UIColor(red: 148/255.0, green: 23/255.0, blue: 81/255.0, alpha: 1.0)
         case .custom(let hexValue, let opacity):
-            instanceColor = UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
-            
+            color = UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
         }
-        return instanceColor
+        return color
     }
 }

@@ -11,7 +11,6 @@ import UIKit
 extension UINavigationBar
 {
     func setupNavigationBar() {
-        
         barTintColor = Color.navigationBarBackground.value
         let titleDict: NSDictionary = [
             NSAttributedStringKey.foregroundColor: Color.navigationBarText.value,
